@@ -34,19 +34,21 @@
     <div class="container">
         <div id="timer">00:00:00:00</div>
     </div>
+    <iframe style="display: none;" width="560" height="315" src="https://www.youtube.com/embed/1EelvXIGNrE?Autoplay=1" frameborder="0"
+        allowfullscreen></iframe>
 
     <script type="text/javascript">
         function toTen(value) {
             return value >= 10 ? value : '0' + value;
         }
-        
-        function setTime(){
+
+        function setTime() {
             const timer = document.getElementById('timer');
             let date = new Date('2020-11-14T09:00:00');
             let now = new Date();
             let left = (date - now) / 1000;
 
-            if(left < 0){
+            if (left < 0) {
                 timer.innerHTML = '00:00:00:00';
                 return;
             }
@@ -65,7 +67,7 @@
             timer.innerHTML = `00:${toTen(hour)}:${toTen(min)}:${toTen(sec)}`;
         }
         setTime();
-        setInterval(() => {setTime()}, 1000);
+        setInterval(() => { setTime() }, 1000);
     </script>
 </body>
 
