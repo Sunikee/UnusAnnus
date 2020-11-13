@@ -1,11 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unus Annus</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            background-color: black;
+        }
+
+        .container {
+            width: 100%;
+
+        }
+
+        #timer {
+            color: white;
+            margin: auto;
+            text-align: center;
+            height: 100vh;
+            font-size: 100px;
+            line-height: 50vh;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <div class="container">
+        <div id="timer">00:00:00:00</div>
+    </div>
+
+    <script type="text/javascript">
+        function toTen(value) {
+            return value >= 10 ? value : '0' + value;
+        }
+        
+        function setTime(){
+            const timer = document.getElementById('timer');
+            let date = new Date('2020-11-14T09:00:00');
+            let now = new Date();
+            let left = (date - now) / 1000;
+
+            if(left < 0){
+                timer.innerHTML = '00:00:00:00';
+                return;
+            }
+
+            const days = Math.floor(left / 86400);
+            left -= days * 86400;
+
+            const hour = Math.floor(left / 3600) % 24;
+            left -= hour * 3600;
+
+            const min = Math.floor(left / 60) % 60;
+            left -= min * 60;
+
+            const sec = Math.floor(left);
+
+            timer.innerHTML = `00:${toTen(hour)}:${toTen(min)}:${toTen(sec)}`;
+        }
+        setTime();
+        setInterval(() => {setTime()}, 1000);
+    </script>
 </body>
+
 </html>
